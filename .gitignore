@@ -1,0 +1,23 @@
+# ignore ./chromedriver because it's a binary file
+chromedriver
+
+# ignore all .DS_Store files
+.DS_Store
+
+# ignore all .idea files
+.idea
+
+# ignore all .vscode files
+.vscode
+
+# ignore all .pytest_cache files
+.pytest_cache
+
+# ignore all __pycache__ files
+__pycache__
+
+# ignore all .git files
+.git
+
+# ignore .venv files
+.venv
