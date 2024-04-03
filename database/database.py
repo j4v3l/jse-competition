@@ -1,3 +1,11 @@
+""" This module contains functions for creating and managing a SQLite database.
+
+    Raises:
+        ValueError: If there are duplicate column names in the table.
+
+    Returns:
+        sqlite3.Connection: The SQLite connection.
+"""
 import sqlite3
 
 
