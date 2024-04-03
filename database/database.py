@@ -68,6 +68,14 @@ def close_connection(conn):
 
 
 def insert_data_into_db(conn, table_name, data, column_order):
+    """ Inserts data into the specified table in the SQLite database.
+
+    Args:
+        conn (sqlite3.Connection): The SQLite connection.
+        table_name (str): The name of the table to insert the data into.
+        data (list): The data to insert into the table.
+        column_order (list): The order of the columns in the table.
+    """
     cursor = conn.cursor()
     for row in data:
         if not isinstance(row, (list, tuple)):
