@@ -4,6 +4,7 @@
     Returns:
         sqlite3.Connection: The SQLite connection.
 """
+import datetime
 import time
 from selenium import webdriver
 from bs4 import BeautifulSoup
@@ -158,8 +159,12 @@ def main(date=None):
     # Base URL of the page to scrape
     BASE_URL = 'https://www.jamstockex.com/trading/trade-quotes/'
 
-    # Construct the URL with the specific date if provided
-    URL = f"{BASE_URL}?market=main-market&date={date}" if date else BASE_URL
+    # If no date is provided, use the current date
+    if not date:
+        date = datetime.datetime.now().strftime('%Y-%m-%d')
+
+    # Construct the URL with the specific date
+    URL = f"{BASE_URL}?market=main-market&date={date}"
 
     options = webdriver.ChromeOptions()
     options.add_argument(
@@ -199,6 +204,9 @@ def main(date=None):
     for scrape, table_name, column_order in scraping_functions_and_tables:
         # Scrape the data
         data = scrape(soup)
+
+        # Add the date to each row of data
+        data = [row + [date] for row in data]
 
         # Print out the data before it's cleaned
         print(f"Raw data for {table_name}: {data}")
